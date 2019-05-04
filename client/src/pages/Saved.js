@@ -30,17 +30,21 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-10 md-offset-1">
-            <article>
-              <h1>Synopsis</h1>
-              <p>
-                {this.state.book.synopsis}
+            <article className="center">
+              <h1 className="center">Description of the Book</h1>
+              <img src={this.state.book.image} alt={this.state.book.title} title={this.state.book.title} className="center"></img>
+              <p className="center">
+                {this.state.book.description}
               </p>
+
+
+              <p className="center"><a href={this.state.book.link} target="_blank" rel="noopener noreferrer">Click Here to go to the Google Books Page</a></p>
             </article>
           </Col>
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
+            <Link to="/" className="center">← Back to Authors</Link>
           </Col>
         </Row>
       </Container>
