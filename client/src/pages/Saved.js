@@ -1,55 +1,35 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import Jumbotron from "../components/Jumbotron";
+import React from "react";
+import ResultsContainer from "../components/ResultsContainer";
 import API from "../utils/API";
 
-class Detail extends Component {
-  state = {
-    book: {}
-  };
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
-  componentDidMount() {
-    API.getBook(this.props.match.params.id)
-      .then(res => this.setState({ book: res.data }))
-      .catch(err => console.log(err));
-  }
+class Saved extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            savedBooks: []
+        }
+    }
 
-  render() {
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                {this.state.book.title} by {this.state.book.author}
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <article className="center">
-              <h1 className="center">Description of the Book</h1>
-              <img src={this.state.book.image} alt={this.state.book.title} title={this.state.book.title} className="center"></img>
-              <p className="center">
-                {this.state.book.description}
-              </p>
+    componentWillMount() {
+        API.getBooks().then(
+            (response) => {
+                this.setState({savedBooks: response.data});
+            }
+        ).catch(
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
 
-
-              <p className="center"><a href={this.state.book.link} target="_blank" rel="noopener noreferrer">Click Here to go to the Google Books Page</a></p>
-            </article>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-2">
-            <Link to="/" className="center">← Back to Authors</Link>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+    render() {
+        console.log(this.state.savedBooks);
+        return(
+            <main>
+                <ResultsContainer savedBooks={this.state.savedBooks} path={this.props.match.path}/>
+            </main>
+        );
+    }
 }
 
-export default Detail;
+export default Saved;
