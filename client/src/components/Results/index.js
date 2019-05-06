@@ -1,11 +1,13 @@
 import React from "react";
 import BookResult from "../BookResult";
 
+
 function Results(props) {
     if(props.path === "/") {
         return(
-            <div id="resultsContainer">
+            <div id="results">
                 <h3>Results Found</h3>
+            {/* bookData = Array.from(props.bookData); */}
                 {props.bookData.map((book) => {
                     const bookInfo = book.volumeInfo;
                     return <BookResult
@@ -22,7 +24,7 @@ function Results(props) {
     } else if(props.path === "/saved") {
         if(props.savedBooks.length > 0) {
             return(
-                <div id="resultsContainer">
+                <div id="results">
                     <h3>Saved Books</h3>
                     {props.savedBooks.map((book) => {
                         return <BookResult
@@ -39,7 +41,7 @@ function Results(props) {
             );
         } else {
             return(
-                 <div id="resultsContainer">
+                 <div id="results">
                     <h3>Saved Books</h3>
                     <p>No saved books.</p>
                 </div>
