@@ -1,10 +1,10 @@
 require("dotenv").config();
 const axios = require("axios");
-const db = require("../models");
+const db = require("../../models");
 const path = require("path");
+const router = require("express").Router();
 
-module.exports = function(app) {
-    app.get("/api/books", (req, res) => {
+    router.get("/api/books", (req, res) => {
         db.Book.find().then(
             (booksData) => {
                 res.json(booksData);
@@ -16,7 +16,7 @@ module.exports = function(app) {
         );
     });
 
-    app.post("/search", (req, res) => {
+    router.post("/search", (req, res) => {
         // set bookTitle to the req.body.title with spaces replaced with plus signs(+)
         let bookTitle = req.body.title.replace(/\s/g, "+");
         axios.get(
@@ -27,24 +27,25 @@ module.exports = function(app) {
             }
         ).catch(
             (err) => {
-                res.json({error: error})
+                res.json("Error")
             }
         );
     });
 
-    app.post("/api/books", (req, res) => {
+    router.post("/api/books", (req, res) => {
         db.Book.create(req.body).then(
             (response) => {
                 res.json({successful: response});
             }
         ).catch(
             (err) => {
-                res.json({error: err});
+                // console.log(err);
+                res.json("Error");
             }
         );
     });
 
-    app.delete("/api/books/:id", (req, res) => {
+    router.delete("/api/books/:id", (req, res) => {
         db.Book.findByIdAndDelete(req.params.id).then(
             (response) => {
                 res.json({successful: response});
@@ -58,7 +59,8 @@ module.exports = function(app) {
 
     // Send every other request to the React app
     // Define any API routes before this runs
-    app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-    });
-}
+    // router.get("*", (req, res) => {
+    // res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    // });
+
+module.exports = router;
