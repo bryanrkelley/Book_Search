@@ -17,7 +17,7 @@ class BookResult extends React.Component {
         this.setState({saved: true});
         const bookData = {
             title: this.props.title,
-            authors: this.props.authors,
+            authors: this.props.authors[0],
             link: this.props.link,
             img: this.props.img,
             description: this.props.description
@@ -39,7 +39,6 @@ class BookResult extends React.Component {
         e.preventDefault();
         API.deleteBook(this.props.id).then(
             (response) => {
-                console.log(response);
                 Router.dispatch(this.props.location, null)
             }
         ).catch(

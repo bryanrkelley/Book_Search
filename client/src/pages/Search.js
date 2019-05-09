@@ -24,6 +24,7 @@ class Search extends React.Component {
         API.searchBooks(this.state.bookInput)
             .then(
                 (response) => {
+                    console.log(response);
                     this.setState({bookData: response.data});
                     this.setState({bookInput: ""});
                 }

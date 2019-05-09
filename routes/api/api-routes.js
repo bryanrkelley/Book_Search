@@ -38,7 +38,7 @@ const router = require("express").Router();
             }
         ).catch(
             (err) => {
-                // console.log(err);
+                console.log(err);
                 res.json("Error");
             }
         );
