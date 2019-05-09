@@ -23,7 +23,7 @@ app.use("/", function(req, res) {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+mongoose.connect(process.env.MONGODB || "mongodb://localhost/reactreadinglist");
 
 // Start the API server
 app.listen(PORT, function() {
