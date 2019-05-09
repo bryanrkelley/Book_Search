@@ -3,7 +3,6 @@ import BookResult from "../BookResult";
 
 
 function Results(props) {
-    console.log("THIS IS THE IMG", this.props)
     if(props.path === "/") {
         return(
             <div id="results">
@@ -15,7 +14,7 @@ function Results(props) {
                     authors={bookInfo.authors}
                     description={bookInfo.description}
                     link={bookInfo.canonicalVolumeLink}
-                    img={bookInfo.imageLinks}
+                    img={bookInfo.imageLinks.thumbnail}
                     path={props.path}
                     key={book.id}/>
                 })}

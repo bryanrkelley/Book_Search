@@ -50,7 +50,6 @@ class BookResult extends React.Component {
     }
 
     render() {
-        console.log("THIS IS THE IMG PROP", this.props.img);
         return(
             <div className="bookResult" id={(this.props.id)? this.props.id: null} style={{display: this.state.deleted? "none" : "block"}}>
                 <div className="row">
