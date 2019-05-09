@@ -9,7 +9,6 @@ import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 
 function App() {
-  console.log(process.env.REACT_APP_BOOKS_KEY);
   return (
     <Router>
       <div>

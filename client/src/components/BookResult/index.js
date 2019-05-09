@@ -50,12 +50,13 @@ class BookResult extends React.Component {
     }
 
     render() {
+        console.log("THIS IS THE IMG PROP", this.props.img);
         return(
             <div className="bookResult" id={(this.props.id)? this.props.id: null} style={{display: this.state.deleted? "none" : "block"}}>
                 <div className="row">
                     <div className="aboutBook">
                         <h4>{this.props.title}</h4>
-                        <p>By: {(this.props.authors)? this.props.authors.join(", "): "N/A"}</p>
+                        <p>By: {(this.props.authors)? this.props.authors : "N/A"}</p>
                     </div>
                     <div className="btnDiv">
                         {
@@ -70,9 +71,7 @@ class BookResult extends React.Component {
                 </div>
                 <div className="row">
                     {(this.props.img)? <img src= {
-                        // if smallthubmail exists on this.props.img use that else if thumbnail exists on this.props.img use that else leave src empty
-                        (this.props.img.smallThumbnail)? this.props.img.smallThumbnail:
-                        (this.props.img.thumbnail)? this.props.img.thumbnail: ""
+                        (this.props.img)
                     } alt="book cover"/>: null}
                     <p>{(this.props.description)? this.props.description: "N/A"}</p>
                 </div>

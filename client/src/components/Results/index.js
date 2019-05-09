@@ -3,12 +3,11 @@ import BookResult from "../BookResult";
 
 
 function Results(props) {
+    console.log("THIS IS THE IMG", this.props)
     if(props.path === "/") {
-        console.log(props);
         return(
             <div id="results">
                 <h3>Results Found</h3>
-            {/* bookData = Array.from(props.bookData); */}
                 {props.bookData.map((book, key) => {
                     const bookInfo = book.volumeInfo;
                     return <BookResult

@@ -1,6 +1,8 @@
 import React from "react";
 import "./Style.css";
 
+// USE LINK for React
+
 const Nav = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
   <a className="navbar-brand" href="/">

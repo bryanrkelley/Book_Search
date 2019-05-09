@@ -10,9 +10,10 @@ class Saved extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         API.getBooks().then(
             (response) => {
+                console.log("This is the SAVED DATA", response);
                 this.setState({savedBooks: response.data});
             }
         ).catch(
